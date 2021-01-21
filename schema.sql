@@ -315,7 +315,6 @@ CREATE TABLE `wallettransaction` (
 
 -- -----------------------------------------------------------------------------
 
-
 CREATE TABLE `contracttype` (
 	`id` INT NOT NULL,
 	`value` VARCHAR(255) NOT NULL,
@@ -446,6 +445,52 @@ CREATE TABLE `corpcontractitem` (
 		REFERENCES `corpcontract`(`contractId`)
 		ON DELETE CASCADE,
 	KEY `ix_corpcontractitem_contractId` (`contractId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `publiccontract` (
+	`contractId` INT NOT NULL,
+	`type` INT NOT NULL,
+	`status` INT NOT NULL,
+	`issuerId` INT NOT NULL,
+	`issuerCorpId` INT NOT NULL,
+	`forCorp` BOOLEAN,
+	`dateIssued` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`dateExpired` TIMESTAMP NOT NULL,
+	`title` VARCHAR(255),
+	`price` DECIMAL(19,4),
+	`regionId` INT NOT NULL,
+	`startLocationId` BIGINT,
+	`endLocationId` BIGINT,
+	`daysToComplete` INT,
+	`reward` DECIMAL(19,4),
+	`collateral` DECIMAL(19,4),
+	`buyout` DECIMAL(19,4),
+	`volume` DECIMAL(19,4),
+	`lastSeen` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (`contractId`),
+	FOREIGN KEY (`type`)
+		REFERENCES `contracttype`(`id`),
+	FOREIGN KEY (`status`)
+		REFERENCES `contractstatus`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `publiccontractitem` (
+	`contractItemId` INT AUTO_INCREMENT,
+	`contractId` INT NOT NULL,
+	`typeId` INT NOT NULL,
+	`quantity` INT NOT NULL,
+	`recordId` BIGINT NOT NULL,
+	`included` BOOLEAN NOT NULL,
+	`isBpc` BOOLEAN,
+	`itemId` BIGINT,
+	`matEfficiency` INT,
+	`timeEfficiency` INT,
+	`runs` INT,
+	PRIMARY KEY (`contractItemId`),
+	FOREIGN KEY (`contractId`)
+		REFERENCES `publiccontract`(`contractId`)
+		ON DELETE CASCADE,
+	KEY `ix_publiccontractitem_contractId` (`contractId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -----------------------------------------------------------------------------
