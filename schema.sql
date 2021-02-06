@@ -455,7 +455,7 @@ CREATE TABLE `publiccontract` (
 	`issuerCorpId` INT NOT NULL,
 	`forCorp` BOOLEAN,
 	`dateIssued` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`dateExpired` TIMESTAMP NOT NULL,
+	`dateExpired` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`title` VARCHAR(255),
 	`price` DECIMAL(19,4),
 	`regionId` INT NOT NULL,
