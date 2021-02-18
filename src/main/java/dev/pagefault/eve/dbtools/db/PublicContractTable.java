@@ -25,7 +25,7 @@ public class PublicContractTable {
 			+ "`dateExpired`,`title`,`price`,`regionId`,`startLocationId`,`endLocationId`,"
 			+ "`daysToComplete`,`reward`,`collateral`,`buyout`,`volume`,`lastSeen`"
 			+ ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE"
-			+ " `lastSeen`=VALUES(`lastSeen`)";
+			+ " `lastSeen`=VALUES(`lastSeen`), `status`=VALUES(`status`)";
 
 	private static final String UPDATE_COMPLETED_SQL = "UPDATE publiccontract SET `status`="
 			+ Contract.ContractStatus.FINISHED.getValue() + " WHERE `lastSeen`<?";
