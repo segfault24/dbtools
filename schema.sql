@@ -643,8 +643,8 @@ CREATE TABLE `dlocation` (
 
 -- -----------------------------------------------------------------------------
 
-CREATE VIEW vjitabestbuy AS SELECT typeId, MAX(price) AS best FROM marketorder WHERE locationId IN (60003760, 1028858195912) AND isBuyOrder=1 GROUP BY typeId, locationId;
-CREATE VIEW vjitabestsell AS SELECT typeId, MIN(price) AS best FROM marketorder WHERE locationId IN (60003760, 1028858195912) AND isBuyOrder=0 GROUP BY typeId, locationId;
-CREATE VIEW vamarrbestbuy AS SELECT typeId, MAX(price) AS best FROM marketorder WHERE locationId=60008494 AND isBuyOrder=1 GROUP BY typeId, locationId;
-CREATE VIEW vamarrbestsell AS SELECT typeId, MIN(price) AS best FROM marketorder WHERE locationId=60008494 AND isBuyOrder=0 GROUP BY typeId, locationId;
+CREATE VIEW vjitabestbuy AS SELECT typeId, MAX(price) AS best FROM marketorder WHERE locationId IN (60003760, 1028858195912) AND isBuyOrder=1 GROUP BY typeId;
+CREATE VIEW vjitabestsell AS SELECT typeId, MIN(price) AS best FROM marketorder WHERE locationId IN (60003760, 1028858195912) AND isBuyOrder=0 GROUP BY typeId;
+CREATE VIEW vamarrbestbuy AS SELECT typeId, MAX(price) AS best FROM marketorder WHERE locationId=60008494 AND isBuyOrder=1 GROUP BY typeId;
+CREATE VIEW vamarrbestsell AS SELECT typeId, MIN(price) AS best FROM marketorder WHERE locationId=60008494 AND isBuyOrder=0 GROUP BY typeId;
 
